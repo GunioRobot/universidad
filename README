@@ -1,4 +1,7 @@
 Prácticas de la universidad del curso 2010/2011.
 
-adp :: Ampliación de Programación
-tci :: Traductores, Compiladores e Intérpretes
+/adp :: Ampliación de Programación
+	/e-s :: Entrada/Salida
+/tci :: Traductores, Compiladores e Intérpretes
+	/lex :: Análisis léxico con lex
+	/yacc :: Análisis sintáctico con yacc
