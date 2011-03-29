@@ -139,7 +139,7 @@ leeSecuencia prop = do
                         	return $ x : xs
                         	}
                               
--- Ejercicio 8
+-- TODO: Ejercicio 8
 
 -- TODO: Separar argumentos, contarlos e imprimirlos en minúscula
 cuenta :: IO ()
@@ -150,7 +150,7 @@ cuenta = do
 			putStrLn " parámetros"
 			sequence_ (map putStrLn args)
 			
--- Ejercicio 9
+-- TODO: Ejercicio 9
 
 -- Ejecuta n veces la acción de entrada/salida dada
 
@@ -160,7 +160,7 @@ cuenta = do
 repite' :: Int -> IO a -> IO ()
 repite' n accion = sequence_ $ replicate n accion
 
--- Ejercicio 10
+-- TODO: Ejercicio 10
 
 -- Definir una función equivalente a 'sequence_'
 
@@ -174,3 +174,39 @@ secuenciaBind (a:as) =
 -- TODO: con 'foldr'
 
 -- TODO: con 'foldl'
+
+-- Ejercicio 11
+
+-- Ejecuta la acción si se satisface la guarda
+when :: Bool -> IO () -> IO ()
+when condicion accion =
+	if condicion then
+		accion
+	else
+		return ()
+
+-- Probar la función 'when'
+ejemploWhen = do 
+				putStr "dame un número: " 
+				x <- readLn 
+				when (x < 0) (putStrLn "Negativo") 
+				when (x == 0) (putStrLn "Cero") 
+				when (x > 0) (putStrLn "Positivo")
+				
+-- Ejercicio 12
+
+-- Pregunta hasta que se introduzca un dato correcto
+preguntaOK :: Read a => String -> IO a
+preguntaOK s = catch
+				(do
+              		putStrLn s
+              		r <- readLn
+              		return r)
+              	(\_ -> do
+						putStrLn "Introduzca un valor correcto:"
+						preguntaOK s)
+						
+-- TODO: Ejercicio 13
+
+-- Definir una función equivalente a 'try'
+-- intenta :: IO a -> IO (Either IOError a)
