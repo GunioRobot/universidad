@@ -5,8 +5,8 @@ import System.Environment
 
 main :: IO ()
 main = do
-        args <- getArgs
-        putStr "Ha introducido "
-        putStr $ show $ length args
-        putStrLn " parámetros"
-        sequence_ (map putStrLn args)
+		args <- getArgs
+		putStr "Ha introducido "
+		putStr $ show $ length args
+		putStrLn " parámetros"
+		sequence_ (map putStrLn $ map (map toLower)  args)

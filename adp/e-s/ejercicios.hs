@@ -141,20 +141,24 @@ leeSecuencia prop = do
                               
 -- TODO: Ejercicio 8
 
--- TODO: Separar argumentos, contarlos e imprimirlos en minúscula
+-- Separar argumentos, contarlos e imprimirlos en minúscula
 cuenta :: IO ()
 cuenta = do
 		   	args <- getArgs
 			putStr "Ha introducido "
 			putStr $ show $ length args
 			putStrLn " parámetros"
-			sequence_ (map putStrLn args)
+			sequence_ (map putStrLn $ map (map toLower)  args)
 			
--- TODO: Ejercicio 9
+-- Ejercicio 9
 
 -- Ejecuta n veces la acción de entrada/salida dada
 
--- TODO: versión recursiva
+-- versión recursiva
+repite :: Int -> IO a -> IO ()
+repite n accion
+	| n >= 1 = do { accion; repite (n - 1) accion }
+	| otherwise = return ()
 	
 -- utilizando sequence_
 repite' :: Int -> IO a -> IO ()
@@ -172,6 +176,8 @@ secuenciaBind (a:as) =
 			secuenciaBind as
 
 -- TODO: con 'foldr'
+-- secuenciaFoldr :: Monad m => [m a] -> m ()
+-- secuenciaFoldr
 
 -- TODO: con 'foldl'
 

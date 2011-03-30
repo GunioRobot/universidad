@@ -2,6 +2,7 @@ Prácticas de la universidad del curso 2010/2011.
 
 /adp :: Ampliación de Programación
 	/e-s :: Entrada/Salida
+/mc :: Modelos Computacionales
 /tci :: Traductores, Compiladores e Intérpretes
 	/lex :: Análisis léxico con lex
 	/yacc :: Análisis sintáctico con yacc
