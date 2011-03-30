@@ -50,8 +50,6 @@ prop_min xs  =
 	where
 		types = (xs :: [Int])
 
-
-
 -- Para listas no vacías, el último elemento de la lista ordenada
 -- es el máximo elemento de la lista original
 prop_max xs  =
@@ -60,13 +58,11 @@ prop_max xs  =
 	where
 		types = (xs :: [Int])
 
-
 -- La lista y su ordenación tienen la misma longitud:
 prop_longitud xs =
 	length xs == length (qSort xs)
 	where
 		types = (xs :: [Int])
-
 
 -- Tras ordenar una lista, la lista está en orden
 prop_ordenada xs  =
@@ -75,8 +71,6 @@ prop_ordenada xs  =
 	where
 		types = (xs :: [Int])
 		ordenada xs = and . zipWith (<=) xs $ tail xs
-
-
 
 -- La lista ordenada es una permutación de la original
 prop_permuta xs  =
