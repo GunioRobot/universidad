@@ -58,28 +58,39 @@ todos propiedad ((x, n) : bs) = propiedad x && todos propiedad ((x, n) : bs)
 -- TODO: Pruebas QuickCheck
 
 -- tamaño funciona correctamente
--- prop_tamaño xs =
-
+prop_tamaño xs = 
+	-- collect (tamaño xs) $
+	tamaño xs == length ls
+	where
+		ls = bolsaALista xs
 
 -- apariciones funciona correctamente
-
--- prop_apariciones xs =
-
-
+{- TODO
+prop_apariciones xs =
+	apariciones e xs == n
+	where
+		ls = bolsaALista xs
+		n = 
+-}
 
 -- las listas devueltas por bolsaALista están ordenadas
-
--- prop_listaOrdenada xs  =
-
-
+{-
+prop_listaOrdenada xs  =
+	-- collect (tamaño xs) $
+	ordenada ls
+	where
+		ls = bolsaALista xs
+		ordenada = 
+			-- and . zipWith (\(x, _) (y, _) -> x <= y) ls $ tail ls
+-}
 
 -- si se expande una bolsa en una lista con repeticiones [a],
 -- se obtiene una ordenación de la lista original
 
 -- prop_expande xs =
-
-
-
+	-- collect (tamaño xs) $
 -- las representación interna de las bolsas está ordenada
 
 -- prop_ordenInterno xs  =
+	-- collect (tamaño xs) $
+	

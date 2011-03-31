@@ -176,8 +176,8 @@ secuenciaBind (a:as) =
 			secuenciaBind as
 
 -- TODO: con 'foldr'
--- secuenciaFoldr :: Monad m => [m a] -> m ()
--- secuenciaFoldr
+--secuenciaFoldr :: Monad m => [m a] -> m ()
+--secuenciaFoldr =
 
 -- TODO: con 'foldl'
 
@@ -209,10 +209,14 @@ preguntaOK s = catch
               		r <- readLn
               		return r)
               	(\_ -> do
-						putStrLn "Introduzca un valor correcto:"
+						putStrLn "¡Valor incorrecto!"
 						preguntaOK s)
 						
 -- TODO: Ejercicio 13
 
--- Definir una función equivalente a 'try'
+-- TODO: Definir una función equivalente a 'try'
 -- intenta :: IO a -> IO (Either IOError a)
+intenta a = catch
+				a
+				(\_ -> return $ userError "NO")
+				
