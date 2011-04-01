@@ -106,10 +106,11 @@ doLeeCadena = do
                 if (c == '\n') then
 					putChar '\n'
 				else
-                	do
-                      doLeeCadena
-                      putChar c
-
+                	do 
+                	{
+                    	doLeeCadena;
+                    	putChar c
+					}
 -- Ejercicio 6
 
 -- Pregunta y leer respuesta
@@ -135,20 +136,14 @@ leeSecuencia prop = do
 						if prop x then do { return [] }
 						else do 
 							{
-							xs <- leeSecuencia prop;
-                        	return $ x : xs
+								xs <- leeSecuencia prop;
+                        		return $ x : xs
                         	}
                               
--- TODO: Ejercicio 8
+-- Ejercicio 8
 
 -- Separar argumentos, contarlos e imprimirlos en minúscula
-cuenta :: IO ()
-cuenta = do
-		   	args <- getArgs
-			putStr "Ha introducido "
-			putStr $ show $ length args
-			putStrLn " parámetros"
-			sequence_ (map putStrLn $ map (map toLower)  args)
+-- ver cuenta.hs
 			
 -- Ejercicio 9
 
@@ -175,11 +170,13 @@ secuenciaBind (a:as) =
 			a >>= \_ ->
 			secuenciaBind as
 
--- TODO: con 'foldr'
---secuenciaFoldr :: Monad m => [m a] -> m ()
---secuenciaFoldr =
+-- con 'foldr'
+secuenciaFoldr :: Monad m => [m a] -> m ()
+secuenciaFoldr = foldr (\a as -> do { a; as }) (return ())
 
 -- TODO: con 'foldl'
+-- secuenciaFoldl :: Monad m => [m a] -> m ()
+-- secuenciaFoldl = foldl (\as a -> do {  }) (return ())
 
 -- Ejercicio 11
 
@@ -193,7 +190,7 @@ when condicion accion =
 
 -- Probar la función 'when'
 ejemploWhen = do 
-				putStr "dame un número: " 
+				putStr "Dame un número: " 
 				x <- readLn 
 				when (x < 0) (putStrLn "Negativo") 
 				when (x == 0) (putStrLn "Cero") 
@@ -203,20 +200,21 @@ ejemploWhen = do
 
 -- Pregunta hasta que se introduzca un dato correcto
 preguntaOK :: Read a => String -> IO a
-preguntaOK s = catch
-				(do
-              		putStrLn s
-              		r <- readLn
-              		return r)
-              	(\_ -> do
+preguntaOK s = do
+				putStrLn s
+				r <- readLn
+				return r
+            `catch`
+              	\_ -> do
 						putStrLn "¡Valor incorrecto!"
-						preguntaOK s)
+						preguntaOK s
 						
--- TODO: Ejercicio 13
+-- Ejercicio 13
 
--- TODO: Definir una función equivalente a 'try'
--- intenta :: IO a -> IO (Either IOError a)
-intenta a = catch
-				a
-				(\_ -> return $ userError "NO")
-				
+-- Definir una función equivalente a 'try'
+intenta :: IO a -> IO (Either IOError a)
+intenta f = do 
+				accion <- f
+				return (Right accion)
+		`catch`
+				\_ -> return (Left $ userError "No se puede ejecutar la acción.")		

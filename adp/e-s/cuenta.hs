@@ -1,7 +1,7 @@
 ﻿import Data.Char
 import System.Environment
 
--- TODO: Separar argumentos, contarlos e imprimirlos en minúscula
+-- Separar argumentos, contarlos e imprimirlos en minúscula
 
 main :: IO ()
 main = do
