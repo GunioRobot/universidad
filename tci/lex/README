@@ -1,4 +1,1 @@
-Estoy usando lex para Mac, despu√©s de generar el .c a partir
-del .lex compilo utilizando gcc con el comando:
-	
-	gcc lex.yy.c -lfl
+Ejercicios de Lex para la asignatura Traductores, Compiladores e Intérpretes.

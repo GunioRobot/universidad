@@ -2,15 +2,15 @@
 -- TAD Bolsa (implementación lineal) --
 ---------------------------------------
 
-module BolsaLin ( Bolsa
-                , vacia         -- Ord a => Bolsa a
-                , insertar      -- Ord a => a -> Bolsa a -> Bolsa a
-                , listaABolsa   -- Ord a => [a] -> Bolsa a
-                , bolsaALista   -- Ord a => Bolsa a -> [(a, Int)]
-                , tamaño        -- Ord a => Bolsa a -> Int
-                , apariciones   -- Ord a => a -> Bolsa a -> Int
-                , todos         -- Ord a => (a-> Bool) -> Bolsa a -> Bool
-              ) where
+module BolsaLineal ( Bolsa
+					, vacia         -- Ord a => Bolsa a
+					, insertar      -- Ord a => a -> Bolsa a -> Bolsa a
+					, listaABolsa   -- Ord a => [a] -> Bolsa a
+					, bolsaALista   -- Ord a => Bolsa a -> [(a, Int)]
+					, tamaño        -- Ord a => Bolsa a -> Int
+					, apariciones   -- Ord a => a -> Bolsa a -> Int
+					, todos         -- Ord a => (a-> Bool) -> Bolsa a -> Bool
+				   ) where
 
 import Test.QuickCheck
 import Data.Char (isUpper)
