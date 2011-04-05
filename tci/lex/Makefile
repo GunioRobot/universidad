@@ -8,8 +8,7 @@ CC = gcc
 CFLAGS = -lfl
 
 # Ejercicios a compilar
-ejercicios:	ej01 ej02 ej03 ej04 ej05 ej06 ej07 ej08 ej09 ej10 ej11 ej12
-
+ejercicios = ej01 ej02 ej03 ej04 ej05 ej06 ej07 ej08 ej09 ej10 ej11 ej12
 
 .PHONY: all limpiar
 
@@ -23,6 +22,7 @@ all:	$(ejercicios)
 %.o:		%.c
 		$(CC) -c -o $@ $<
 
+#Generar ejecutable
 %:			%.o
 		$(CC) -o $@ $< $(CFLAGS)
 		
