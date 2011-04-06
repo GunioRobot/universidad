@@ -2,7 +2,7 @@
 -- TAD Bolsa (implementación logarítmica) --
 --------------------------------------------
 
-module BolsaLogarítmica
+module BolsaLog
 ( Bolsa
 , vacia         -- Ord a => Bolsa a
 , insertar      -- Ord a => a -> Bolsa a -> Bolsa a
