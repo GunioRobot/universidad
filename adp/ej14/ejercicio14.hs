@@ -21,8 +21,14 @@ main = do
 bolsaFrecuencias :: String -> Bolsa String
 bolsaFrecuencias = listaABolsa . tokens isAlpha
 
-linea :: (String, Int) -> String
-linea (x, n) = x ++ "   [" ++ show n ++ "]\n"
+linea :: Int -> (String, Int) -> String
+linea l (x, n) = x ++ replicate nEspacios ' '  ++ "[" ++ show n ++ "]\n"
+					where
+						nEspacios = l - length x + 1
+
+longitudTokenMasLargo :: [(String, Int)] -> Int
+longitudTokenMasLargo [] = 0
+longitudTokenMasLargo ((t, _) : ts) = max (length t) (longitudTokenMasLargo ts)
 
 -- código impuro
 
@@ -30,4 +36,4 @@ pintaLineas :: Bolsa String -> IO ()
 pintaLineas bs = putStr salida
 					where
 						ls = bolsaALista bs
-						salida = concat $ map linea ls
+						salida = concat $ map (linea $ longitudTokenMasLargo ls) ls
