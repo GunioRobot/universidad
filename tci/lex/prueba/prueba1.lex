@@ -32,8 +32,7 @@
 		  }
 		else
 		  {
-			nuevo->cadena = malloc (sizeof (char) * (int) strlen (v));
-			strcpy (nuevo->cadena, v);
+			nuevo->cadena = strdup (v);
 			nuevo->sig = NULL;
 		  }
 		  
@@ -103,8 +102,7 @@
 		  }
 		else
 		  {
-			nuevo->cadena = malloc (sizeof (char) * (int) strlen (v));
-			strcpy (nuevo->cadena, v);
+			nuevo->cadena = strdup (v);
 			nuevo->sig = NULL;
 		  }
 		  
@@ -216,7 +214,71 @@
 	}
 %}
 
+%start COMMENT
 %%
+
+<COMMENT>"*/"			{ BEGIN(0); }
+<COMMENT>abstract
+<COMMENT>assert
+<COMMENT>boolean
+<COMMENT>break
+<COMMENT>byte
+<COMMENT>case
+<COMMENT>catch
+<COMMENT>char
+<COMMENT>class
+<COMMENT>const
+<COMMENT>continue
+<COMMENT>default
+<COMMENT>do
+<COMMENT>double
+<COMMENT>else
+<COMMENT>enum
+<COMMENT>extends
+<COMMENT>false
+<COMMENT>final
+<COMMENT>finally
+<COMMENT>float
+<COMMENT>goto
+<COMMENT>implements
+<COMMENT>import
+<COMMENT>instanceof
+<COMMENT>int
+<COMMENT>interface
+<COMMENT>long
+<COMMENT>native
+<COMMENT>new 
+<COMMENT>null
+<COMMENT>package
+<COMMENT>private
+<COMMENT>protected
+<COMMENT>public
+<COMMENT>return
+<COMMENT>short
+<COMMENT>static
+<COMMENT>strictfp
+<COMMENT>super
+<COMMENT>synchronized
+<COMMENT>this
+<COMMENT>throw
+<COMMENT>throws
+<COMMENT>transient
+<COMMENT>true
+<COMMENT>try 
+<COMMENT>void
+<COMMENT>volatile              
+<COMMENT>"/*"				   
+<COMMENT>"//"(.*\n)			   
+<COMMENT>[^=]=[^=]			   
+<COMMENT>if					   
+<COMMENT>switch				   
+<COMMENT>while				   
+<COMMENT>for				   
+<COMMENT>System.out.print	   
+<COMMENT>System.out.println	   
+<COMMENT>\"([^\"\\]|(\\.))*\"  
+<COMMENT>[a-zA-Z_][a-zA-Z0-9_]*
+<COMMENT>.|\n                  
 
 abstract
 assert
@@ -267,7 +329,7 @@ true
 try 
 void
 volatile
-"/*"(.*\n)+.*"*/"		
+"/*"					{ BEGIN(COMMENT); }		
 "//"(.*\n)				
 [^=]=[^=]				{ asignaciones++; }
 if						{ num_if_y_switch++; }
@@ -277,7 +339,7 @@ for						{ num_for++; }
 System.out.print		{ num_system_out_print++; }
 System.out.println		{ num_system_out_print++; }
 \"([^\"\\]|(\\.))*\"	{ insertar_lista (&lista_cadenas, yytext); }
-[a-zA-Z][a-zA-Z0-9]*	{ insertar_lista_o (&lista_o_identificadores, yytext); }
+[a-zA-Z_][a-zA-Z0-9_]*	{ insertar_lista_o (&lista_o_identificadores, yytext); }
 .|\n					
 
 %%
