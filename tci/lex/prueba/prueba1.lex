@@ -330,8 +330,9 @@ try
 void
 volatile
 "/*"					{ BEGIN(COMMENT); }		
-"//"(.*\n)				
-[^=]=[^=]				{ asignaciones++; }
+"//"(.*\n)
+==						
+=						{ asignaciones++; }
 if						{ num_if_y_switch++; }
 switch					{ num_if_y_switch++; }
 while					{ num_while++; }
