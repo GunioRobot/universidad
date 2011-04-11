@@ -175,8 +175,8 @@ secuenciaFoldr :: Monad m => [m a] -> m ()
 secuenciaFoldr = foldr (\a as -> do { a; as }) (return ())
 
 -- TODO: con 'foldl'
--- secuenciaFoldl :: Monad m => [m a] -> m ()
--- secuenciaFoldl = foldl (\as a -> do {  }) (return ())
+--secuenciaFoldl :: Monad m => [m a] -> m ()
+--secuenciaFoldl = foldl1 (\as a -> do { as; a })
 
 -- Ejercicio 11
 

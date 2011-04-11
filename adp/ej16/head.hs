@@ -9,20 +9,19 @@ Imprime las primeras N líneas
 de un fichero.
 -}
 
-{-
- TODO
- - Manejo de excepciones
- - Refactorizar
--}
-
 -- código impuro
 
 main :: IO ()
 main = do
 		args <- getArgs
-		texto <- readFile $ head (tail args)
-		putStrLn $ nLineas (numero $ head args) texto
-
+		if length args < 2
+			then putStrLn "Argumentos insuficientes."
+			else do
+					texto <- readFile . head $ tail args
+					putStr $ nLineas (número $ head args) texto
+					`catch`
+					\_ -> do
+							putStrLn "Uso: ./head <número> <fichero-texto>"
 		
 -- código puro
 
@@ -32,5 +31,5 @@ lineas = tokens (/= '\n')
 nLineas :: Int -> String -> String
 nLineas n = concat . take n . map (++ "\n") . lineas
 
-numero :: String -> Int
-numero = read
+número :: String -> Int
+número = read

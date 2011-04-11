@@ -8,21 +8,21 @@ import Tokeniser
 Imprime un fichero paginado.
 -}
 
-{-
- TODO
- - Manejo de excepciones
- - Refactorizar
--}
-
 -- código impuro
 
 main :: IO ()
 main = do
-		arg : _ <- getArgs
-		texto <- readFile arg
-		pinta $ lineas texto
-		more $ quita $ lineas texto
-		
+		args <- getArgs
+		if null args
+			then putStrLn "Argumentos insuficientes."
+			else do
+				texto <- readFile $ head args
+				pinta $ lineas texto
+				more . quita $ lineas texto
+				`catch`
+				\_ -> do
+						putStrLn "Uso: ./more <fichero-texto>"
+						
 more :: [String] -> IO ()
 more txt = do
 			c <- getChar
@@ -30,13 +30,14 @@ more txt = do
 				return ()
 			else do
 					pinta txt
-					if length txt <= 24 then
-						return()
-					else
-						more $ quita txt
+					more $ quita txt
 		
 pinta :: [String] -> IO ()
-pinta txt = putStr . concat $ take 24 txt
+pinta txt = if length txt <= 24
+				then do
+						putStr . concat $ take 24 txt
+						return ()
+				else putStr . concat $ take 24 txt
 
 -- código puro
 
