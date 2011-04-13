@@ -1,7 +1,7 @@
 ﻿import Data.Char (ord, toLower)
 import System.Environment
 
--- Ejercicio 1
+{- Ejercicio 1 -}
 
 -- Primer y último carácter de tres
 tresPrimeroUltimo :: IO (Char, Char)
@@ -27,7 +27,7 @@ tresSumaOrdinales =
        	getChar >>= \z ->
         return $ (ord x + ord y + ord z)
 
--- Ejercicio 2
+{- Ejercicio 2 -}
 
 -- Saludo personalizado
 saludo :: IO ()
@@ -36,7 +36,7 @@ saludo =
 		getLine >>= \nombre -> 
 		putStrLn $ "Hola " ++ nombre
 
--- Ejercicio 3
+{- Ejercicio 3 -}
 
 -- Factorial
 fact :: Int -> Int
@@ -51,7 +51,7 @@ factorial =
 		readLn >>= \x ->
 		print $ fact x
 
--- Ejercicio 4
+{- Ejercicio 4 -}
 
 -- Imprime la inversa de la cadena leída
 leeCadena :: IO ()
@@ -63,7 +63,7 @@ leeCadena =
 				leeCadena >>= \_ ->
 				putChar c
 
--- Ejercicio 5
+{- Ejercicio 5 -}
 -- Ejercicios anteriores con notación 'do'
 
 tresPrimeroUltimo' :: IO (Char, Char)
@@ -111,7 +111,7 @@ doLeeCadena = do
                     	doLeeCadena;
                     	putChar c
 					}
--- Ejercicio 6
+{- Ejercicio 6 -}
 
 -- Pregunta y leer respuesta
 pregunta :: Read a => String -> IO a
@@ -127,7 +127,7 @@ preguntas = do
               edad <- pregunta "Edad: "
               return (nombre, edad)
 
--- Ejercicio 7
+{- Ejercicio 7 -}
 
 -- Lee valores hasta que uno cumpla la propiedad, devuelve lista de los que no
 leeSecuencia :: Read a => (a -> Bool) -> IO [a]
@@ -140,12 +140,12 @@ leeSecuencia prop = do
                         		return $ x : xs
                         	}
                               
--- Ejercicio 8
+{- Ejercicio 8 -}
 
 -- Separar argumentos, contarlos e imprimirlos en minúscula
 -- ver cuenta.hs
 			
--- Ejercicio 9
+{- Ejercicio 9 -}
 
 -- Ejecuta n veces la acción de entrada/salida dada
 
@@ -159,7 +159,7 @@ repite n accion
 repite' :: Int -> IO a -> IO ()
 repite' n accion = sequence_ $ replicate n accion
 
--- Ejercicio 10
+{- Ejercicio 10 -}
 
 -- Definir una función equivalente a 'sequence_'
 
@@ -178,7 +178,7 @@ secuenciaFoldr = foldr (\a as -> do { a; as }) (return ())
 secuenciaFoldl :: Monad m => [m a] -> m ()
 secuenciaFoldl = foldl (\as a -> do { as; a; return () }) (return ())
 
--- Ejercicio 11
+{- Ejercicio 11 -}
 
 -- Ejecuta la acción si se satisface la guarda
 when :: Bool -> IO () -> IO ()
@@ -196,7 +196,7 @@ ejemploWhen = do
 				when (x == 0) (putStrLn "Cero") 
 				when (x > 0) (putStrLn "Positivo")
 				
--- Ejercicio 12
+{- Ejercicio 12 -}
 
 -- Pregunta hasta que se introduzca un dato correcto
 preguntaOK :: Read a => String -> IO a
@@ -209,7 +209,7 @@ preguntaOK s = do
 						putStrLn "¡Valor incorrecto!"
 						preguntaOK s
 						
--- Ejercicio 13
+{- Ejercicio 13 -}
 
 -- Definir una función equivalente a 'try'
 intenta :: IO a -> IO (Either IOError a)
