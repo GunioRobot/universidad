@@ -3,6 +3,12 @@ module Main where
 import System.Environment
 import System.Random
 
+{-
+Juego de adivinanza.
+Se genera un número aleatorio
+que hay que adivinar.
+-}
+
 -- código impuro
 
 main :: IO ()
