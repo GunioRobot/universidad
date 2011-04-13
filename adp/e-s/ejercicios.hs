@@ -63,7 +63,7 @@ leeCadena =
 				leeCadena >>= \_ ->
 				putChar c
 
--- Ejercicio5
+-- Ejercicio 5
 -- Ejercicios anteriores con notación 'do'
 
 tresPrimeroUltimo' :: IO (Char, Char)
@@ -159,7 +159,7 @@ repite n accion
 repite' :: Int -> IO a -> IO ()
 repite' n accion = sequence_ $ replicate n accion
 
--- TODO: Ejercicio 10
+-- Ejercicio 10
 
 -- Definir una función equivalente a 'sequence_'
 
@@ -174,9 +174,9 @@ secuenciaBind (a:as) =
 secuenciaFoldr :: Monad m => [m a] -> m ()
 secuenciaFoldr = foldr (\a as -> do { a; as }) (return ())
 
--- TODO: con 'foldl'
---secuenciaFoldl :: Monad m => [m a] -> m ()
---secuenciaFoldl = foldl1 (\as a -> do { as; a })
+-- con 'foldl'
+secuenciaFoldl :: Monad m => [m a] -> m ()
+secuenciaFoldl = foldl (\as a -> do { as; a; return () }) (return ())
 
 -- Ejercicio 11
 

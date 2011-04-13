@@ -60,17 +60,6 @@ juego j ps =
 								else juego j ps		-- ERROR HANDLING?
 							}
 		}
-		
-
-jugada :: Int -> Int -> [Int] -> [Int]
-jugada p f pilas = nuevasPilas
-	where
-		primeras = take (p - 1) pilas
-		últimas = drop (p - 1) pilas
-		nuevasPilas = primeras ++ head últimas - f : tail últimas
-		
-jugadaVálida :: Int -> Int -> [Int] -> Bool
-jugadaVálida p f pilas = f <= pilas !! (p - 1)
 	
 generaPilas :: Int -> Int -> IO [Int]
 generaPilas 0 n = do { return [] }
@@ -93,10 +82,12 @@ pintaPilasDesde n (x : xs) =
 		}
 		
 pregunta :: Read a => String -> IO a
-pregunta s = do
-              putStrLn s
-              r <- readLn
-              return r
+pregunta s = 
+	do 	{
+		putStrLn s;
+      	r <- readLn;
+      	return r
+		}
 		
 -- código puro
 
@@ -105,3 +96,14 @@ pilas = read . head
 
 fichas :: [String] -> Int
 fichas = read . head . tail
+
+
+jugada :: Int -> Int -> [Int] -> [Int]
+jugada p f pilas = nuevasPilas
+	where
+		primeras = take (p - 1) pilas
+		últimas = drop (p - 1) pilas
+		nuevasPilas = primeras ++ head últimas - f : tail últimas
+		
+jugadaVálida :: Int -> Int -> [Int] -> Bool
+jugadaVálida p f pilas = f <= pilas !! (p - 1) 
