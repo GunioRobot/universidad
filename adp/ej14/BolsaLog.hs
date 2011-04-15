@@ -77,43 +77,6 @@ todos' prop = foldBolsa f True
 				where
 					f = (\izq x _ der -> prop x && izq && der)
 
--- TODO: definir los fold y reescribir las funciones con éstos
 foldBolsa :: (b -> a -> Int -> b -> b) -> b -> Bolsa a -> b
 foldBolsa _ e Vacía = e
 foldBolsa f e (Nodo izq x n der) = f (foldBolsa f e izq) x n (foldBolsa f e der)
-
--- foldBolsaAc :: (a -> Int -> b -> b) -> b -> Bolsa a -> b
-
-
--- TODO: Pruebas QuickCheck
-
--- tamaño funciona correctamente
-
--- prop_tamaño xs =
-
-
-
--- apariciones funciona correctamente
-
--- prop_apariciones xs =
-
-
-
--- las listas devueltas por bolsaALista están ordenadas
-
--- prop_listaOrdenada xs  =
-
-
-
--- si se expande una bolsa en una lista con repeticiones [a],
--- se obtiene una ordenación de la lista original
-
--- prop_expande xs =
-
-
-
--- la representación interna de las bolsas está ordenada
-
--- prop_ordenInterno xs  =
-
--- las implementaciones alternativas son iguales...

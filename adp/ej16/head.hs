@@ -12,16 +12,19 @@ de un fichero.
 -- código impuro
 
 main :: IO ()
-main = do
-		args <- getArgs
+main = 
+	do 	{
+		args <- getArgs;
 		if length args < 2
 			then putStrLn "Argumentos insuficientes."
-			else do
+			else 
+				do 	
 					texto <- readFile . head $ tail args
 					putStr $ nLineas (número $ head args) texto
 					`catch`
 					\_ -> do
 							putStrLn "Uso: ./head <número> <fichero-texto>"
+		}
 		
 -- código puro
 

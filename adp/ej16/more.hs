@@ -11,8 +11,9 @@ Imprime un fichero paginado.
 -- código impuro
 
 main :: IO ()
-main = do
-		args <- getArgs
+main = 
+	do 	{
+		args <- getArgs;
 		if null args
 			then putStrLn "Argumentos insuficientes."
 			else do
@@ -22,22 +23,22 @@ main = do
 				`catch`
 				\_ -> do
 						putStrLn "Uso: ./more <fichero-texto>"
+		}
 						
 more :: [String] -> IO ()
-more txt = do
-			c <- getChar
-			if c == 'q' then
-				return ()
-			else do
-					pinta txt
-					more $ quita txt
+more txt = 
+	do 	{
+		c <- getChar;
+		if c == 'q' 
+			then return ()
+			else do { pinta txt; more $ quita txt }
+		}
 		
 pinta :: [String] -> IO ()
-pinta txt = if length txt <= 24
-				then do
-						putStr . concat $ take 24 txt
-						return ()
-				else putStr . concat $ take 24 txt
+pinta txt = 
+	if length txt <= 24
+		then do { putStr . concat $ take 24 txt; return () }
+		else putStr . concat $ take 24 txt
 
 -- código puro
 

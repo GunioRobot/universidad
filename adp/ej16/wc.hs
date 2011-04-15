@@ -12,16 +12,21 @@ en un fichero.
 -- código impuro
 
 main :: IO ()
-main = do
-		args <- getArgs
+main = 
+	do 	{
+		args <- getArgs;
 		if null args
 			then putStrLn "Argumentos insuficientes."
-			else do
+			else
+				let
+					arg = head args
+				in
+				do
 					texto <- readFile arg
 					putStrLn $  wc texto ++ arg
 					`catch`
-					\_ -> do
-							putStrLn "Uso: ./wc <fichero-texto>"
+					\_ -> do { putStrLn "Uso: ./wc <fichero-texto>" }
+		}
 						
 -- código puro
 
@@ -38,8 +43,9 @@ nBytes :: String -> String
 nBytes = show . length
 
 cuentaCaracter :: Char -> String -> Int
-cuentaCaracter c = foldr f 0
-					where
-						f x xs = if x == c
-									then 1 + xs
-									else xs
+cuentaCaracter c = 
+	foldr f 0
+		where
+			f x xs = if x == c
+						then 1 + xs
+						else xs
