@@ -1,11 +1,7 @@
-Prácticas de la universidad del curso 2010/2011.
-
-/adp :: Ampliación de Programación
-	/e-s :: Entrada/Salida
-	/quickcheck :: QuickCheck
-	/tad :: Tipos Abstractos de Datos
-/iia :: Introducción a la Inteligencia Artificial
-/mc :: Modelos Computacionales
-/tci :: Traductores, Compiladores e Intérpretes
-	/lex :: Análisis léxico con lex
-	/yacc :: Análisis sintáctico con yacc
+.
+├── README
+├── adp     ::  Ampliación de Programación  ::
+├── iia     ::  Introducción a la Inteligencia Artificial  ::
+├── mc      ::  Modelos Computacionales  ::
+├── so      ::  Sistemas Operativos  ::
+└── tci     ::  Traductores, Compiladores e Intépretes  ::
