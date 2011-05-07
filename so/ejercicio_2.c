@@ -8,11 +8,8 @@
 / a la posición indicada por el segundo.
 */
 
-// ejercicio_2 <fichero-origen> <fichero-destino>
 int main (int argc, char ** argv)
 {	
-	// TODO : usar link y unlink
-	
 	if (argc != 3)
 	{
 		printf("Uso: ejercicio1 <número-en-octal>\n");
