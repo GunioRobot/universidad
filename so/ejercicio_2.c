@@ -12,7 +12,7 @@ int main (int argc, char ** argv)
 {	
 	if (argc != 3)
 	{
-		printf("Uso: ejercicio1 <número-en-octal>\n");
+		printf("Uso: %s <número-en-octal>\n", argv[0]);
 		return;
 	}
 	

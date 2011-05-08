@@ -26,7 +26,7 @@ int main (int argc, char ** argv)
 
 	if (argc > 2)
 	{
-		fprintf(stderr, "Uso: ejercicio1 <número-en-octal>\n");
+		fprintf(stderr, "Uso: %s <número-en-octal>\n", argv[0]);
 		return;
 	}
 	
