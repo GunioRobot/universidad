@@ -18,16 +18,17 @@ import System.Random -- para ejemplos posteriores
 -}
 
 ejercicio3 segundos = gui prog
-	where prog = do
-	-- inicializar
-		ventana <- window 	[title =: "Ejercicio 3"
-							,size =: Size 800 600]
-		update
-		sleep (1000*segundos)
-	-- modificar tamaño
-		ventana !: size =: Size 600 800
-		sleep (1000*segundos)
-		quit
+	where prog = 
+		do
+			-- inicializar
+			ventana <- window 	[ title =: "Ejercicio 3"
+								, size =: Size 800 600 ]
+			update
+			sleep (1000*segundos)
+			-- modificar tamaño
+			ventana !: size =: Size 600 800
+			sleep (1000*segundos)
+			quit
 		
 -- Ejercicio 4 --
 {- 
@@ -37,30 +38,32 @@ ejercicio3 segundos = gui prog
 -}
 
 ejercicio4 = gui prog
-	where prog = do
-	-- inicializar
-		ventana <- window 	[title =: "Ejercicio 4"
-							,size =: Size 800 600
-							,position =: Point 0 0]
-		update
-		sleep 1000
-	-- modificar posición
-		nuevaPosicion <- puntoAleatorio
-		ventana !: position =: nuevaPosicion
-		sleep 1000
-		nuevaPosicion <- puntoAleatorio
-		ventana !: position =: nuevaPosicion
-		sleep 1000
-		nuevaPosicion <- puntoAleatorio
-		ventana !: position =: nuevaPosicion
-		sleep 1000
-		quit
+	where prog = 
+		do
+			-- inicializar
+			ventana <- window 	[ title =: "Ejercicio 4"
+								, size =: Size 800 600
+								, position =: Point 0 0 ]
+			update
+			sleep 1000
+			-- modificar posición
+			nuevaPosicion <- puntoAleatorio
+			ventana !: position =: nuevaPosicion
+			sleep 1000
+			nuevaPosicion <- puntoAleatorio
+			ventana !: position =: nuevaPosicion
+			sleep 1000
+			nuevaPosicion <- puntoAleatorio
+			ventana !: position =: nuevaPosicion
+			sleep 1000
+			quit
 
 puntoAleatorio :: IO Point
-puntoAleatorio = do
-					x <- randomRIO (0, 799)
-					y <- randomRIO (0, 599)
-					return $ Point x y
+puntoAleatorio = 
+	do
+		x <- randomRIO (0, 799)
+		y <- randomRIO (0, 599)
+		return $ Point x y
 
 -- Ejercicio 5 --
 {- 
@@ -69,16 +72,16 @@ puntoAleatorio = do
 -}
 
 ejercicio5 = gui prog
-	where prog = do
-	-- inicializar
-		ventana <- window 	[title =: "Ejercicio 5"
-							,size =: Size 800 600
-							,resizable =: False
-							,position =: Point 0 0
-							]
-		update
-		sleep 10000
-		quit
+	where prog = 
+		do
+			-- inicializar
+			ventana <- window 	[ title =: "Ejercicio 5"
+								, size =: Size 800 600
+								, resizable =: False
+								, position =: Point 0 0 ]
+			update
+			sleep 10000
+			quit
 		
 -- Ejercicio 6 --
 {- 
@@ -87,31 +90,33 @@ ejercicio5 = gui prog
 -}
 
 ejercicio6 = gui prog
-	where prog = do
-	-- inicializar
-		ventana <- window 	[title =: "Ejercicio 6"
-							,size =: Size 800 600
-							,position =: Point 0 0
-							,on windowClose =: quit
-							]
-		ventana !!: [on mouseEnter =: cambiaColor ventana
-					,on mouseExit =: cambiaColor ventana
-					,on focusGain =: cambiaColor ventana
-					,on focusLoose =: cambiaColor ventana]
-		update
+	where prog = 
+		do
+			-- inicializar
+			ventana <- window 	[ title =: "Ejercicio 6"
+								, size =: Size 800 600
+								, position =: Point 0 0
+								, on windowClose =: quit ]
+			ventana !!:	[ on mouseEnter =: cambiaColor ventana
+						, on mouseExit =: cambiaColor ventana
+						, on focusGain =: cambiaColor ventana
+						, on focusLoose =: cambiaColor ventana ]
+			update
 		
 cambiaColor :: Window -> IO ()
-cambiaColor w = do
-					color <- colorAleatorio
-					w !: bgColor =: color
-					return ()
+cambiaColor w = 
+	do
+		color <- colorAleatorio
+		w !: bgColor =: color
+		return ()
 		
 colorAleatorio :: IO Color
-colorAleatorio = do
-					rojo <- randomRIO (0, 255)
-					verde <- randomRIO (0, 255)
-					azul <- randomRIO (0, 255)
-					return $ rgb rojo verde azul
+colorAleatorio = 
+	do
+		rojo <- randomRIO (0, 255)
+		verde <- randomRIO (0, 255)
+		azul <- randomRIO (0, 255)
+		return $ rgb rojo verde azul
 					
 -- Ejercicio 7 --
 {- 
@@ -120,11 +125,11 @@ colorAleatorio = do
 -}
 
 ejercicio7 = gui prog
-	where
-		prog = do 
-				w <- ventanaAleatoria "ventana"
-				w !: on windowClose =: quit
-				return ()
+	where prog = 
+		do 
+			w <- ventanaAleatoria "ventana"
+			w !: on windowClose =: quit
+			return ()
 
 ventanaAleatoria :: String -> IO Window
 ventanaAleatoria título = 
@@ -163,12 +168,12 @@ posicionAleatoria =
 collage :: Int -> IO ()
 collage n = gui prog
 	where prog =
-				do
-					numQuit <- randomRIO (1, n);
-					let listaVentanas = [ventanaAleatoria $ "ventana " ++ show i | i <- [1..n], i /= numQuit]
-					ventanaQuit <- ventanaAleatoria $ "ventana " ++ show numQuit
-					ventanaQuit !: on windowClose =: quit;
-					sequence_ listaVentanas
+		do
+			numQuit <- randomRIO (1, n);
+			let listaVentanas = [ventanaAleatoria $ "ventana " ++ show i | i <- [1..n], i /= numQuit]
+			ventanaQuit <- ventanaAleatoria $ "ventana " ++ show numQuit
+			ventanaQuit !: on windowClose =: quit;
+			sequence_ listaVentanas
 					
 -- Ejercicio 9 --
 {- 
@@ -178,18 +183,20 @@ collage n = gui prog
 -}
 
 ejercicio9 = gui prog
-	where
-		prog = do 
-				w <- ventanaAleatoria "ventana"
-				w !: on windowClose =: cerrarONo w
-				return ()
-		cerrarONo w = do
-						cerrar <- randomIO
-						if cerrar
-							then quit
-							else do
-									close w
-									prog
+	where 
+		prog = 
+		do 
+			w <- ventanaAleatoria "ventana"
+			w !: on windowClose =: cerrarONo w
+			return ()
+		cerrarONo w = 
+			do
+				cerrar <- randomIO
+				if cerrar
+					then quit
+					else do
+							close w
+							prog
 									
 -- Ejercicio 10 --
 {- 
@@ -198,22 +205,23 @@ ejercicio9 = gui prog
 -}
 
 relieve = gui prog 
-	where
-		prog = do 
-				w <- window [ title =: "Relieves"
-							, bgColor =: white
-							, on windowClose =: quit ]
-				hola <- label 	[text =: "¡Hola mundo!" 
-								, font =: (bold . italic . arial) 26 
-								, color =: yellow 
-								, bgColor =: blue] w
-				adios <- label 	[ text =: "¡Adiós mundo!" 
-								, font =: (bold . arial) 26
-								, color =: yellow 
-								, bgColor =: red ] w
-				w !: layout =: hola ^.^ flexible (space (sz 10 10)) ^.^ adios
-				w !!: 	[ on focusGain =: relieveHundido hola
-						, on focusLoose =: relieveSurco adios] 
+	where 
+		prog = 
+		do 
+			w <- window [ title =: "Relieves"
+						, bgColor =: white
+						, on windowClose =: quit ]
+			hola <- label 	[text =: "¡Hola mundo!" 
+							, font =: (bold . italic . arial) 26 
+							, color =: yellow 
+							, bgColor =: blue] w
+			adios <- label 	[ text =: "¡Adiós mundo!" 
+							, font =: (bold . arial) 26
+							, color =: yellow 
+							, bgColor =: red ] w
+			w !: layout =: hola ^.^ flexible (space (sz 10 10)) ^.^ adios
+			w !!: 	[ on focusGain =: relieveHundido hola
+					, on focusLoose =: relieveSurco adios] 
 		relieveHundido l = l !: relief =: Sunken
 		relieveSurco l = l !: relief =: Groove
 		
@@ -223,37 +231,29 @@ relieve = gui prog
 -}
 
 calculadora = gui prog 
-	where
-		prog = do
-				w <- window [ title =: "Calculadora"
-							, bgColor =: white
-							, on windowClose =: quit ]
-				let 
-					listaEtiquetas = [creaEtiqueta texto w | texto <- controles]
-				controlesCalculadora <- sequence listaEtiquetas
-				w !: layout =: matrix 4 controlesCalculadora
-				return ()
+	where prog = 
+		do
+			w <- window [ title =: "Calculadora"
+						, bgColor =: white
+						, on windowClose =: quit ]
+			let 
+				listaEtiquetas = [creaEtiqueta texto w | texto <- controles]
+			controlesCalculadora <- sequence listaEtiquetas
+			w !: layout =: matrix 4 controlesCalculadora
+			return ()
 
 creaEtiqueta :: String -> Window -> IO Label
-creaEtiqueta texto w = do
-						etiqueta <-	label	[ text =: texto
-											, font =: (bold . arial) 26
-											, color =: black
-											, bgColor =: white
-											, relief =: Ridge] w
-						return etiqueta
+creaEtiqueta texto w = 
+	do
+		etiqueta <-	label	[ text =: texto
+							, font =: (bold . arial) 26
+							, color =: black
+							, bgColor =: white
+							, relief =: Ridge] w
+		return etiqueta
 						
 controles :: [String]
 controles = [ "7", "8", "9", "*"
 			, "4", "5", "6", "/"
 			, "1", "2", "3", "+"
-			, "%", "0", ".", "-"]
-									
--- EJEMPLOS
-holaAdios = gui prog 
-	where
-		prog = do 
-				w <- window [title =: "Saludo desde GUI", bgColor =: white, on windowClose =: quit ]
-				hola <- label [text =: "¡Hola mundo!" , font =: (bold . italic . arial) 26 , color =: yellow , bgColor =: blue] w
-				adios <- label [ text =: "¡Adiós mundo!" , font =: (bold . arial) 26, color =: yellow , bgColor =: red ] w
-				w!:layout =: hola ^.^ flexible (space (sz 10 10)) ^.^ adios
+			, "%", "0", ".", "-" ]
