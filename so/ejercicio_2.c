@@ -12,15 +12,15 @@ int main (int argc, char ** argv)
 {	
 	if (argc != 3)
 	{
-		printf("Uso: %s <número-en-octal>\n", argv[0]);
-		return;
+		fprintf(stderr, "Uso: %s <fichero-origen> <fichero-destino>\n", argv[0]);
+		exit(-1);
 	}
 	
 	char * origen = argv[1];
 	char * destino = argv[2];
 	
 	if (link(origen, destino) == -1)
-		fprintf(stderr, "Ha habido un error, %s debe existir.\n", origen);
+		fprintf(stderr, "Ha habido un error al copiar %s en %s.\n", origen, destino);
 	
-	return 0;
+	exit(0);
 }

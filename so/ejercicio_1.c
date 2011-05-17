@@ -10,7 +10,7 @@
 / cambia la máscara al valor dado y crea un fichero.
 */
 
-int mask_octal(char * num)
+int octal(char * num)
 {
 	return (int) strtol(num, (char **) NULL, 8);
 }
@@ -27,7 +27,7 @@ int main (int argc, char ** argv)
 	if (argc > 2)
 	{
 		fprintf(stderr, "Uso: %s <número-en-octal>\n", argv[0]);
-		return;
+		exit(-1);
 	}
 	
 	if (argc == 1)
@@ -36,11 +36,11 @@ int main (int argc, char ** argv)
 	}
 	else 
 	{
-		nueva_mask = mask_octal(argv[1]);
+		nueva_mask = octal(argv[1]);
 		printf("vieja máscara = %o\n", umask(nueva_mask));
 		printf("nueva máscara = %o\n", nueva_mask);
 		crear_fichero(NUEVO_FICHERO);
 	}
 	
-	return 0;
+	exit(0);
 }
