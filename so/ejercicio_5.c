@@ -24,6 +24,7 @@ int main (int argc, char ** argv)
 		exit(-2);
 	}
 	
+	// posicionar cursor al final del fichero
 	int bytes = lseek(descriptor, 0, SEEK_END);
 	if (bytes == -1)
 	{
