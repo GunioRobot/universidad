@@ -19,8 +19,14 @@ int main (int argc, char ** argv)
 	char * origen = argv[1];
 	char * destino = argv[2];
 	
-	if (link(origen, destino) == -1)
-		fprintf(stderr, "Ha habido un error al copiar %s en %s.\n", origen, destino);
+	if (link(origen, destino) == -1) {
+		fprintf(stderr, "Ha habido un error al mover %s en %s.\n", origen, destino);
+		exit(-2);
+	}
+	if (unlink(origen) == -1) {
+		fprintf(stderr, "Ha habido un error al intentar borrar %s\n", origen);
+		exit(-3);
+	}
 	
-	exit(0);
+	return 0;
 }
